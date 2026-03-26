@@ -26,7 +26,7 @@ dev = ["pytest"]
 [project.urls]
 "Homepage" = "https://github.com/swe-students-spring2026/3-package-arctic_fox"
 "Repository" = "https://github.com/swe-students-spring2026/3-package-arctic_fox"
-"Bug Tracker" = "https://github.com/swe-students-spring2026/3-package-arctic_fox"
+"Bug Tracker" = "https://github.com/swe-students-spring2026/3-package-arctic_fox/issues"
 
 [project.scripts]
 placeholderproject = "placeholderproject.__main__:main"
