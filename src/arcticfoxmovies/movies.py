@@ -46,9 +46,16 @@ def quiz(attributes=None):
     }
 
 
-def lead_actor():
-    # params: actor=
-    pass
+def lead_actor(actor):
+    # params: actor= 
+    movies_df = _load_movies()
+    if type(actor) != str:
+        raise ValueError("Actor must be a string")
+    movie_list = []
+    for _, row in movies_df.iterrows():
+        if row["casts"].split(",")[0] == actor:
+            movie_list.append(row["name"])
+    return movie_list
 
 
 def find_similar():
