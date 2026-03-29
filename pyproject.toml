@@ -8,6 +8,7 @@ description = "placeholder"
 version = "0.1.0"
 authors = [
   { name="Sanjay Chunduru", email="sc9635@nyu.edu" },
+  { name="ZhiHui Chen", email="zc3716@nyu.edu" }
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
