@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "placeholderproject"
+description = "placeholder"
+version = "0.1.0"
+authors = [
+  { name="Sanjay Chunduru", email="sc9635@nyu.edu" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+keywords = ["python", "package", "build", "tutorial"]
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pandas>=1.3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.urls]
+"Homepage" = "https://github.com/swe-students-spring2026/3-package-arctic_fox"
+"Repository" = "https://github.com/swe-students-spring2026/3-package-arctic_fox"
+"Bug Tracker" = "https://github.com/swe-students-spring2026/3-package-arctic_fox/issues"
+
+[project.scripts]
+placeholderproject = "placeholderproject.__main__:main"
