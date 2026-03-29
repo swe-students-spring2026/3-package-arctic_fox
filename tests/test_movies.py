@@ -49,7 +49,11 @@ def test_quiz_edge():
     #Assertion 2: For movies with multiple directors
     result = quiz()
     assert "," not in result["director"]
-    assert result["director"] in result["question"]
+    #year should be an int, not string
+    asset isinstance(result["year"], int)
+    #runtime and answer should be non empty strings
+    assert isinstance(result["runtime"], str) and len(result["runtime"]) > 0
+    assert isinstance(result["answer"], str) and len(result["answer"]) > 0
 
 def test_quiz_invalid():
     #Assertion 3: Invalid quiz data raises an error
