@@ -35,3 +35,26 @@ def test_genre_roulette():
     result = genre_roulette("Underwater Basket Weaving")
     assert isinstance(result, str)
     assert "No Underwater Basket Weaving movies found" in result
+
+
+def test_quiz():
+    # Assertion 1: Valid call returns a dict with the expected keys
+    result = quiz()
+    assert isinstance(result, dict)
+    assert "question" in result
+    assert "answer" in result
+    assert "director" in result
+    assert "runtime" in result
+    assert "year" in result
+
+    # Assertion 2: Answer and year look like usable movie data
+    assert isinstance(result["answer"], str)
+    assert len(result["answer"]) > 0
+    assert isinstance(result["year"], int)
+
+    # Assertion 3: Question text includes the clues shown in the dict
+    assert "Guess the movie:" in result["question"]
+    assert result["director"] in result["question"]
+    assert result["runtime"] in result["question"]
+    assert str(result["year"]) in result["question"]
+
