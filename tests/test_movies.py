@@ -130,10 +130,10 @@ def test_quiz_happy():
 
 def test_quiz_edge():
     #Assertion 2: For movies with multiple directors
-    result = quiz()
+    result = quiz(["director", "runtime", "year"])
     assert "," not in result["director"]
     #year should be an int, not string
-    asset isinstance(result["year"], int)
+    assert isinstance(result["year"], int)
     #runtime and answer should be non empty strings
     assert isinstance(result["runtime"], str) and len(result["runtime"]) > 0
     assert isinstance(result["answer"], str) and len(result["answer"]) > 0
