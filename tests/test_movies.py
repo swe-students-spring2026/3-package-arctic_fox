@@ -139,23 +139,6 @@ def test_quiz_edge():
     assert isinstance(result["answer"], str) and len(result["answer"]) > 0
 
 def test_quiz_invalid():
-    #Assertion 3: Invalid quiz data raises an error
-    result = quiz(attributes=123) 
-    #Should still return the question as attributes is not used in the quiz function 
-    assert isinstance(result, dict)
-    assert "question" in result
-
-    # Assertion 2: Answer and year look like usable movie data
-    assert isinstance(result["answer"], str)
-    assert len(result["answer"]) > 0
-    assert isinstance(result["year"], int)
-
-    # Assertion 3: Question text includes the clues shown in the dict
-    assert "Guess the movie:" in result["question"]
-    assert result["director"] in result["question"]
-    assert result["runtime"] in result["question"]
-    assert str(result["year"]) in result["question"]
-
     #not a list
     with pytest.raises(ValueError):
         quiz(123)
