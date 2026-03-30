@@ -61,13 +61,12 @@ def quiz(attributes):
 
     map = {
         "director": f"- Director: {director}",
-        runtime: f"- Runtime: {runtime}",
-        year: f"- Year: {year}"
+        "runtime": f"- Runtime: {runtime}",
+        "year": f"- Year: {year}"
     }
 
-
     clues = [map[attr] for attr in attributes]
-    
+
     question = f"Guess the movie based on these clues:\n" + "\n".join(clues)
 
     return {
