@@ -24,16 +24,9 @@ How a developer who wants to import your project into their own code can do so -
 2. Activate the virtual environment: ``pipenv shell``
 3. Create a Python program file that imports the functions 
 
-
-
 ## Instructions for Contributing
 
 Setting up the virtual environment, installing dependencies, building, and testing the package.
-
-1. Clone the repository to your local machine
-2. Install dependencies: 
-3. Create a virtual environment: ``pipenv shell``
-4. 
 
 ## Team Members
 
