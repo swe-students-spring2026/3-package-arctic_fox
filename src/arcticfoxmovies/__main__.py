@@ -24,6 +24,15 @@ def main():
                 print(f"Found: {result}")
             else:
                 print("No movies found")
+        if sys.argv[1] == "quiz":
+            if len(sys.argv) < 3:
+                print("Error: Provide at least one attribute: director, runtime, year")
+                return
+            attributes = sys.argv[2:]
+            try:
+                movies.play_quiz(attributes)
+            except ValueError as e:
+                print(f"Error: {e}")
 
 
 if __name__ == "__main__":
