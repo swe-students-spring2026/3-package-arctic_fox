@@ -24,6 +24,19 @@ def main():
                 print(f"Found: {result}")
             else:
                 print("No movies found")
+        
+        if sys.argv[1] == "colloborators":
+            colloborator_name_1 = sys.argv[2]
+            colloborator_name_2 = sys.argv[3]
+            if not colloborator_name_1 or not colloborator_name_2:
+                print("Error: Colloborator name is required")
+                return
+            print(f"\nSearching for movies with: {colloborator_name_1} and {colloborator_name_2}")
+            result = movies.find_collabs(colloborator_name_1, colloborator_name_2)
+            if result:
+                print(f"Found: {result}")
+            else:
+                print("No movies found")
 
 
 if __name__ == "__main__":
