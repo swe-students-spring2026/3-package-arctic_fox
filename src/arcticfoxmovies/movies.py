@@ -51,12 +51,9 @@ def movie_night_picker(genres_to_avoid=None, runtime_max=150, minimum_rating=8.0
 def quiz(attributes):
     df = _load_movies()
 
-    if not isinstance(attributes,list) or len(attributes) == 0:
-        raise ValueError("Attributes must be a non-empty list of strings")
-    valid_attributes = {"director", "runtime", "year"}
-    if not all(attr in valid_attributes for attr in attributes):
-        raise ValueError("Invalid attributes in attributes list")
-
+    if not isinstance(attributes, list) or len(attributes) == 0 or not all(attr in ["director", "runtime", "year"] for attr in attributes):
+        raise ValueError("Attributes must be a non-empty list containing any of: 'director', 'runtime', 'year'")
+        
     # pick random movie
     movie = df.sample(1).iloc[0]
     movie_name = movie["name"]
