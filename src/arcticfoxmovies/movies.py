@@ -1,5 +1,5 @@
 """
-Create your movie methods here
+Everyone's movie methods. Still waiting on 1 group member as of March 27th
 """
 from pathlib import Path
 
@@ -11,6 +11,7 @@ _DATA_CSV = Path(__file__).resolve().parents[2] / "data" / "IMDB Top 250 Movies.
 def _load_movies():
     return pd.read_csv(_DATA_CSV)
 
+# Guess the movie based on clues - director, runtime, year.
 
 def movie_night_picker(genres_to_avoid=None, runtime_max=150, minimum_rating=8.0):
     # params: genres_to_avoid=None, runtime_max=150, minimum_rating
@@ -45,9 +46,6 @@ def movie_night_picker(genres_to_avoid=None, runtime_max=150, minimum_rating=8.0
         "run_time": winner['run_time']
     }
 
-
-
-# Guess the movie based on clues - director, runtime, year.
 def quiz(attributes):
     df = _load_movies()
 
@@ -83,11 +81,15 @@ def quiz(attributes):
 def play_quiz(attributes):
     result = quiz(attributes)
     print(result["question"])
-    guess = input("Your guess: ")
-    if guess.lower().strip() == result["answer"].lower().strip():
+    guess =input("Your guess: ")
+
+    #TODO Ethan you need to define answer here - I put in python if down below
+    answer = "Hello"
+    if guess.lower().strip == result[answer].lower().strip() if result.get(answer) else "random":
         print("Correct!")
     else:
         print(f"Wrong! The answer was: {result['answer']}")
+
 
 def lead_actor(actor):
     # params: actor= 
@@ -100,75 +102,43 @@ def lead_actor(actor):
             movie_list.append(row["name"])
     return movie_list
 
-
 def find_similar():
     # params: movie_name=, attributes=["Director", "Runtime", etc]
     pass
 
+def find_collabs(person1: str, person2: str) -> list[str]:
+    df = pd.read_csv(_DATA_CSV)
 
-def _parse_runtime(runtime_str: str) -> int:
-    """Parse '2h 22m', '1h 45m', '142m' etc. into total minutes."""
-    import re
-    hours = re.search(r'(\d+)h', str(runtime_str))
-    minutes = re.search(r'(\d+)m', str(runtime_str))
-    total = 0
-    if hours:
-        total += int(hours.group(1)) * 60
-    if minutes:
-        total += int(minutes.group(1))
-    return total
+    if (not (person1 and person2)):
+        raise ValueError("Make sure no None values in input")
 
+    if type(person1) != str or type(person2) != str:
+        raise ValueError("Both values need to be strings")
 
-def genre_stats(genre_name: str) -> dict:
-    if not isinstance(genre_name, str):
-        raise TypeError("genre_name must be a string")
-    if not genre_name.strip():
-        raise ValueError("genre_name must not be empty or whitespace")
+    #first make evrryone lower case + whitespace clear for normalization sake
+    person1 = person1.lower().strip()
+    person2 = person2.lower().strip()
 
-    df = _load_movies()
-    query = genre_name.strip().lower()
+    if person1 == person2:
+        raise ValueError("People cannot colloborate with each other")
 
-    matched_rows = []
-    canonical_name = None
+    collabs = []
 
     for _, row in df.iterrows():
-        genres = [g.strip() for g in str(row["genre"]).split(",")]
-        for g in genres:
-            if g.lower() == query:
-                if canonical_name is None:
-                    canonical_name = g
-                matched_rows.append(row)
-                break
 
-    if not matched_rows:
-        raise ValueError(f"No genre found matching '{genre_name}'")
+        #look at my utility function - i confirmed that IMDB splits by comma
+        #so, if multiple directors or writers per movie, we can "combine everyone" via commas
+        full_cast = row["directors"].lower() + "," \
+                     + row["writers"].lower() + "," \
+                     + row["casts"].lower()
+        members = set(full_cast.split(","))
 
-    ratings = [float(row["rating"]) for row in matched_rows]
-    avg_rating = round(sum(ratings) / len(ratings), 2)
-    best_movie = max(matched_rows, key=lambda r: float(r["rating"]))["name"]
-    worst_movie = min(matched_rows, key=lambda r: float(r["rating"]))["name"]
+        if person1 in members and person2 in members:
+            collabs.append(row["name"])
+    
+    return collabs
 
-    runtimes = [_parse_runtime(row["run_time"]) for row in matched_rows]
-    runtimes = [r for r in runtimes if r > 0]
-    avg_runtime_minutes = round(sum(runtimes) / len(runtimes)) if runtimes else 0
 
-    from collections import Counter
-    actor_counts = Counter()
-    for row in matched_rows:
-        lead = str(row["casts"]).split(",")[0].strip()
-        if lead:
-            actor_counts[lead] += 1
-    top_actors = [actor for actor, _ in actor_counts.most_common(3)]
-
-    return {
-        "genre": canonical_name,
-        "num_movies": len(matched_rows),
-        "avg_rating": avg_rating,
-        "best_movie": best_movie,
-        "worst_movie": worst_movie,
-        "avg_runtime_minutes": avg_runtime_minutes,
-        "top_actors": top_actors,
-    }
 def find_movie_by_director(director):
     # params: director
     movies_df = _load_movies()
@@ -211,3 +181,19 @@ def genre_roulette(genre, avoid_year=None):
         return f"No {genre} movies found. Try another genre!"
 
     return random.choice(candidates)
+
+
+def find_shape_of_dataframe(path: str | None = None) -> None: 
+    #Utility function for me to figure otu what I can work with after other trials
+
+    if not path:
+        path = _DATA_CSV
+
+    df = pd.read_csv(path)
+    print(df.head())
+    print(df.tail())
+    #print(df.rows())
+
+
+
+
