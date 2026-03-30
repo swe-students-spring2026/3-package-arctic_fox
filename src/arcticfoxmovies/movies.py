@@ -18,25 +18,31 @@ def movie_night_picker():
 
 
 # Guess the movie based on clues - director, runtime, year.
-def quiz(attributes=None):
+def quiz(attributes):
     df = _load_movies()
+
+    if not isinstance(attributes,list) or len(attributes) == 0:
+        raise ValueError("Attributes must be a non-empty list of strings")
+    valid_attributes = {"director", "runtime", "year"}
+    if not all(attr in valid_attributes for attr in attributes):
+        raise ValueError("Invalid attributes in attributes list")
 
     # pick random movie
     movie = df.sample(1).iloc[0]
-
     movie_name = movie["name"]
     director = str(movie["directors"]).split(",")[0].strip()
     runtime = str(movie["run_time"]).strip()
     year = int(movie["year"])
 
-    question = (
-        f"Guess the movie:\n"
-        f"- Director: {director}\n"
-        f"- Runtime: {runtime}\n"
-        f"- Year: {year}"
-    )
+    map = {
+        "director": f"- Director: {director}",
+        runtime: f"- Runtime: {runtime}",
+        year: f"- Year: {year}"
+    }
 
-    print(question)
+    clues = map[attr] for attr in attributes]
+
+    question = f"Guess the movie based on these clues:\n" + "\n".join(clues)
 
     return {
         "question": question,
@@ -46,6 +52,15 @@ def quiz(attributes=None):
         "year": year,
     }
 
+#Actually play the quiz game 
+def play_quiz(attributes):
+    result = quiz(attributes)
+    print(result["question"])
+    guess =input("Your guess: ")
+    if guess.lower().strip = result[answer].lower().strip():
+        print("Correct!")
+    else:
+        print(f"Wrong! The answer was: {result['answer']}")
 
 def lead_actor(actor):
     # params: actor= 

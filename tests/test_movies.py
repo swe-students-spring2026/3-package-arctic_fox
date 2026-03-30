@@ -120,7 +120,7 @@ def test_genre_roulette():
 
 def test_quiz_happy():
     #Assertion 1: Valid input returns a dict with expected keys
-    result = quiz()
+    result = quiz(["director", "runtime", "year"])
     assert isinstance(result, dict)
     assert "question" in result
     assert "answer" in result
@@ -130,7 +130,7 @@ def test_quiz_happy():
 
 def test_quiz_edge():
     #Assertion 2: For movies with multiple directors
-    result = quiz()
+    result = quiz(["director", "runtime", "year"])
     assert "," not in result["director"]
     #year should be an int, not string
     assert isinstance(result["year"], int)
@@ -156,3 +156,12 @@ def test_quiz_invalid():
     assert result["runtime"] in result["question"]
     assert str(result["year"]) in result["question"]
 
+    #not a list
+    with pytest.raises(ValueError):
+        quiz(123)
+    #empty list
+    with pytest.raises(ValueError):
+        quiz([])
+    #invalid attribute
+    with pytest.raises(ValueError):
+        quiz(["invalid_attribute"])
