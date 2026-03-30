@@ -12,14 +12,45 @@ def _load_movies():
     return pd.read_csv(_DATA_CSV)
 
 # Guess the movie based on clues - director, runtime, year.
+
+def movie_night_picker(genres_to_avoid=None, runtime_max=150, minimum_rating=8.0):
+    # params: genres_to_avoid=None, runtime_max=150, minimum_rating
+    
+    df = _load_movies()
+    
+    df['run_time'] = df['run_time'].astype(str).str.extract('(\d+)').astype(float) * 60
+
+    # Filter by rating or runtime
+    df = df[df['run_time'] <= runtime_max]
+    df = df[df['rating'] >= minimum_rating]
+
+    # Filter out genres to avoid 
+    if genres_to_avoid:
+        avoid = [g.lower() for g in genres_to_avoid]
+
+        def is_safe(genre_str):
+            return not any(g in genre_str.lower() for g in avoid)
+        
+        df = df[df['genre'].apply(is_safe)]
+
+    if df.empty:
+        return "No movies match your criteria!"
+    
+    winner = df.sample(1).iloc[0]
+
+    return {
+        "title": winner['name'],
+        "year": winner['year'], 
+        "rating": winner['rating'],
+        "genre": winner['genre'],
+        "run_time": winner['run_time']
+    }
+
 def quiz(attributes):
     df = _load_movies()
 
-    if not isinstance(attributes,list) or len(attributes) == 0:
+    if not isinstance(attributes, list) or len(attributes) == 0 or not all(attr in ["director", "runtime", "year"] for attr in attributes):
         raise ValueError("Attributes must be a non-empty list of strings")
-    valid_attributes = {"director", "runtime", "year"}
-    if not all(attr in valid_attributes for attr in attributes):
-        raise ValueError("Invalid attributes in attributes list")
 
     # pick random movie
     movie = df.sample(1).iloc[0]
@@ -61,6 +92,22 @@ def play_quiz(attributes):
         print("Correct!")
     else:
         print(f"Wrong! The answer was: {result['answer']}")
+
+
+def lead_actor(actor):
+    # params: actor= 
+    movies_df = _load_movies()
+    if type(actor) != str:
+        raise ValueError("Actor must be a string")
+    movie_list = []
+    for _, row in movies_df.iterrows():
+        if row["casts"].split(",")[0] == actor:
+            movie_list.append(row["name"])
+    return movie_list
+
+def find_similar():
+    # params: movie_name=, attributes=["Director", "Runtime", etc]
+    pass
 
 def find_collabs(person1: str, person2: str) -> list[str]:
     df = pd.read_csv(_DATA_CSV)
@@ -149,6 +196,7 @@ def find_shape_of_dataframe(path: str | None = None) -> None:
     print(df.head())
     print(df.tail())
     #print(df.rows())
+
 
 
 
