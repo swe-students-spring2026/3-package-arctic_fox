@@ -1,3 +1,5 @@
+[![log github events](https://github.com/swe-students-spring2026/3-package-arctic_fox/actions/workflows/event-logger.yml/badge.svg)](https://github.com/swe-students-spring2026/3-package-arctic_fox/actions/workflows/event-logger.yml)
+
 # Arctic Fox Movies
 
 ## About this project
@@ -20,17 +22,11 @@ The package uses several functions that work together around the same CSV data:
 
 How a developer who wants to import your project into their own code can do so - include documentation and code examples for all functions in your package and a link to an example Python program that uses each of them.
 
-1. Create a ``pipenv`` virtual environment
-2. Activate the virtual environment: ``pipenv shell``
-3. Create a Python program file that imports the functions 
-
 ## Instructions for Contributing
 
-Setting up the virtual environment, installing dependencies, building, and testing the package.
+How to set up the virtual environment, install dependencies, build, and test the package.
 
 ## Team Members
 
 - Bella D'Aquino - [GitHub Account Link](https://github.com/belladaq)
 - 
-
-
