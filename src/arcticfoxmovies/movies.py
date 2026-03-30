@@ -57,7 +57,7 @@ def play_quiz(attributes):
     result = quiz(attributes)
     print(result["question"])
     guess =input("Your guess: ")
-    if guess.lower().strip = result[answer].lower().strip():
+    if guess.lower().strip == result[answer].lower().strip():
         print("Correct!")
     else:
         print(f"Wrong! The answer was: {result['answer']}")
