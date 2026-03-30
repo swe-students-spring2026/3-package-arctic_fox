@@ -105,75 +105,6 @@ def lead_actor(actor):
     return movie_list
 
 
-<<<<<<< HEAD
-def find_similar():
-    # params: movie_name=, attributes=["Director", "Runtime", etc]
-    pass
-
-
-def _parse_runtime(runtime_str: str) -> int:
-    """Parse '2h 22m', '1h 45m', '142m' etc. into total minutes."""
-    import re
-    hours = re.search(r'(\d+)h', str(runtime_str))
-    minutes = re.search(r'(\d+)m', str(runtime_str))
-    total = 0
-    if hours:
-        total += int(hours.group(1)) * 60
-    if minutes:
-        total += int(minutes.group(1))
-    return total
-
-
-def genre_stats(genre_name: str) -> dict:
-    if not isinstance(genre_name, str):
-        raise TypeError("genre_name must be a string")
-    if not genre_name.strip():
-        raise ValueError("genre_name must not be empty or whitespace")
-
-    df = _load_movies()
-    query = genre_name.strip().lower()
-
-    collabs = []
-
-    for _, row in df.iterrows():
-        genres = [g.strip() for g in str(row["genre"]).split(",")]
-        for g in genres:
-            if g.lower() == query:
-                if canonical_name is None:
-                    canonical_name = g
-                matched_rows.append(row)
-                break
-
-    if not matched_rows:
-        raise ValueError(f"No genre found matching '{genre_name}'")
-
-    ratings = [float(row["rating"]) for row in matched_rows]
-    avg_rating = round(sum(ratings) / len(ratings), 2)
-    best_movie = max(matched_rows, key=lambda r: float(r["rating"]))["name"]
-    worst_movie = min(matched_rows, key=lambda r: float(r["rating"]))["name"]
-
-    runtimes = [_parse_runtime(row["run_time"]) for row in matched_rows]
-    runtimes = [r for r in runtimes if r > 0]
-    avg_runtime_minutes = round(sum(runtimes) / len(runtimes)) if runtimes else 0
-
-    from collections import Counter
-    actor_counts = Counter()
-    for row in matched_rows:
-        lead = str(row["casts"]).split(",")[0].strip()
-        if lead:
-            actor_counts[lead] += 1
-    top_actors = [actor for actor, _ in actor_counts.most_common(3)]
-
-    return {
-        "genre": canonical_name,
-        "num_movies": len(matched_rows),
-        "avg_rating": avg_rating,
-        "best_movie": best_movie,
-        "worst_movie": worst_movie,
-        "avg_runtime_minutes": avg_runtime_minutes,
-        "top_actors": top_actors,
-    }
-=======
 def find_movie_by_director(director):
     # params: director
     movies_df = _load_movies()
@@ -216,4 +147,3 @@ def genre_roulette(genre, avoid_year=None):
         return f"No {genre} movies found. Try another genre!"
 
     return random.choice(candidates)
->>>>>>> c2a315538a4d2c94042867df1b4a62f91c341df8

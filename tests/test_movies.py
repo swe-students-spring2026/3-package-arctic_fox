@@ -3,7 +3,8 @@ from arcticfoxmovies.movies import (
     quiz, 
     find_movie_by_director, 
     genre_roulette,
-    find_collabs
+    find_collabs,
+    movie_night_picker
 )
 
 
