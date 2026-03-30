@@ -82,10 +82,7 @@ def play_quiz(attributes):
     result = quiz(attributes)
     print(result["question"])
     guess =input("Your guess: ")
-
-    #TODO Ethan you need to define answer here - I put in python if down below
-    answer = "Hello"
-    if guess.lower().strip == result[answer].lower().strip() if result.get(answer) else "random":
+    if guess.lower().strip == result["answer"].lower().strip():
         print("Correct!")
     else:
         print(f"Wrong! The answer was: {result['answer']}")

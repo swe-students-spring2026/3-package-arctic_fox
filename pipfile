@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pandas = "*"
+"pyproject.toml" = "*"
 
 [dev-packages]
 pytest = "*"
