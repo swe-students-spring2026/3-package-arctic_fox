@@ -225,3 +225,16 @@ def test_movie_night_picker():
     genre_result = movie_night_picker(genres_to_avoid=["drama"])
     if isinstance(genre_result, dict):
         assert "drama" not in genre_result["genre"]
+
+def test_lead_actor_happy():
+    result = lead_actor("Tim Robbins")
+    assert isinstance(result, list)
+    assert "The Shawshank Redemption" in result
+
+def test_lead_actor_not_string():
+    with pytest.raises(ValueError):
+        lead_actor(123)
+
+def test_lead_actor_empty():
+    with pytest.raises(ValueError):
+        lead_actor("")
