@@ -66,11 +66,11 @@ def quiz(attributes):
 
     map = {
         "director": f"- Director: {director}",
-        runtime: f"- Runtime: {runtime}",
-        year: f"- Year: {year}"
+        "runtime": f"- Runtime: {runtime}",
+        "year": f"- Year: {year}"
     }
 
-    clues = map[attr] for attr in attributes]
+    clues = [map[attr] for attr in attributes]
 
     question = f"Guess the movie based on these clues:\n" + "\n".join(clues)
 
@@ -86,8 +86,8 @@ def quiz(attributes):
 def play_quiz(attributes):
     result = quiz(attributes)
     print(result["question"])
-    guess =input("Your guess: ")
-    if guess.lower().strip = result[answer].lower().strip():
+    guess = input("Your guess: ")
+    if guess.lower().strip() == result["answer"].lower().strip():
         print("Correct!")
     else:
         print(f"Wrong! The answer was: {result['answer']}")
@@ -104,7 +104,6 @@ def lead_actor(actor):
     return movie_list
 
 
-<<<<<<< HEAD
 def find_similar():
     # params: movie_name=, attributes=["Director", "Runtime", etc]
     pass
@@ -173,7 +172,6 @@ def genre_stats(genre_name: str) -> dict:
         "avg_runtime_minutes": avg_runtime_minutes,
         "top_actors": top_actors,
     }
-=======
 def find_movie_by_director(director):
     # params: director
     movies_df = _load_movies()
@@ -216,4 +214,3 @@ def genre_roulette(genre, avoid_year=None):
         return f"No {genre} movies found. Try another genre!"
 
     return random.choice(candidates)
->>>>>>> c2a315538a4d2c94042867df1b4a62f91c341df8
