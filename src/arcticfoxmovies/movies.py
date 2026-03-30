@@ -93,15 +93,13 @@ def lead_actor(actor):
     movies_df = _load_movies()
     if type(actor) != str:
         raise ValueError("Actor must be a string")
+    if not actor.strip():  # Add this line
+        raise ValueError("Actor cannot be empty")  # Add this line
     movie_list = []
     for _, row in movies_df.iterrows():
         if row["casts"].split(",")[0] == actor:
             movie_list.append(row["name"])
     return movie_list
-
-def find_similar():
-    # params: movie_name=, attributes=["Director", "Runtime", etc]
-    pass
 
 def find_collabs(person1: str, person2: str) -> list[str]:
     df = pd.read_csv(_DATA_CSV)

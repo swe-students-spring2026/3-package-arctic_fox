@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "arctic_fox"
-description = "arctic_fox team project"
+name = "arctic-fox-movies"
+description = "A lighthearted Python package for exploring and discovering movies from the IMDB Top 250 list with fun utilities for movie selection and analysis."
 version = "0.1.0"
 authors = [
   { name="Sanjay Chunduru", email="sc9635@nyu.edu" },
@@ -34,4 +34,4 @@ dev = ["pytest"]
 "Bug Tracker" = "https://github.com/swe-students-spring2026/3-package-arctic_fox/issues"
 
 [project.scripts]
-placeholderproject = "placeholderproject.__main__:main"
+arcticfoxmovies = "arcticfoxmovies.__main__:main"
