@@ -66,14 +66,12 @@ def quiz(attributes):
     }
 
 
-    #Ethan I am commenting out your code cuz it is not compiling yet. I will discuss this w u monday
-    #clues = map[attr] for attr in attributes]
-
-    #question = f"Guess the movie based on these clues:\n" + "\n".join(clues)
-
+    clues = [map[attr] for attr in attributes]
+    
+    question = f"Guess the movie based on these clues:\n" + "\n".join(clues)
 
     return {
-        #"question": question,
+        "question": question,
         "answer": movie_name,
         "director": director,
         "runtime": runtime,
