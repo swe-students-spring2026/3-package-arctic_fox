@@ -40,7 +40,7 @@ def quiz(attributes):
         year: f"- Year: {year}"
     }
 
-    clues = map[attr] for attr in attributes]
+    clues = [map[attr] for attr in attributes]
 
     question = f"Guess the movie based on these clues:\n" + "\n".join(clues)
 
