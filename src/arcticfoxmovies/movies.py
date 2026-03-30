@@ -13,7 +13,7 @@ def _load_movies():
 
 # Guess the movie based on clues - director, runtime, year.
 
-def movie_night_picker(genres_to_avoid=None, runtime_max=150, minimum_rating=8.0):
+def movie_night_picker(runtime_max=150, minimum_rating=8.0, genres_to_avoid=None):
     # params: genres_to_avoid=None, runtime_max=150, minimum_rating
     
     df = _load_movies()
