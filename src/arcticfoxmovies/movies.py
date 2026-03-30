@@ -103,12 +103,6 @@ def lead_actor(actor):
             movie_list.append(row["name"])
     return movie_list
 
-
-def find_similar():
-    # params: movie_name=, attributes=["Director", "Runtime", etc]
-    pass
-
-
 def _parse_runtime(runtime_str: str) -> int:
     """Parse '2h 22m', '1h 45m', '142m' etc. into total minutes."""
     import re
@@ -172,6 +166,7 @@ def genre_stats(genre_name: str) -> dict:
         "avg_runtime_minutes": avg_runtime_minutes,
         "top_actors": top_actors,
     }
+
 def find_movie_by_director(director):
     # params: director
     movies_df = _load_movies()

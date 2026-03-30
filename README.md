@@ -13,9 +13,15 @@ The package is intended to be lightweight and easy to use. You can either import
 The package uses several functions that work together around the same CSV data:
 
 - **Pick a movie for tonight** — Filter by things you care about (for example genres to avoid, maximum runtime, or a minimum rating) and get a suggestion.
+
 - **Play a quiz** — The computer picks a movie from the list and gives you clues (such as director, runtime, and year). You try to guess the title from those hints.
+
 - **Look up an actor** — Find which movies in the dataset feature a given actor in a leading role.
-- **Find similar movies** — Start with a movie you like and get recommendations based on shared features.
+
+- **Find movies by the same director** — Start with a director you like and get recommendations based on shared features.
+
+- **genre roulette** -- Pick a random movie for you if you have no clue what to watch
+
 - **View simple stats** — For a director (and optional details like time period), see patterns such as genre distributions or trends in their work. 
 
 ## Instructions for Importing
@@ -29,4 +35,4 @@ How to set up the virtual environment, install dependencies, build, and test the
 ## Team Members
 
 - Bella D'Aquino - [GitHub Account Link](https://github.com/belladaq)
-- 
+- ZhiHui Chen -[GitHub Account Link](https://github.com/Zhi-Hui-C)
