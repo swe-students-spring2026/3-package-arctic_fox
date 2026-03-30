@@ -102,10 +102,6 @@ def lead_actor(actor):
             movie_list.append(row["name"])
     return movie_list
 
-def find_similar():
-    # params: movie_name=, attributes=["Director", "Runtime", etc]
-    pass
-
 def find_collabs(person1: str, person2: str) -> list[str]:
     df = pd.read_csv(_DATA_CSV)
 
