@@ -16,7 +16,28 @@ The package uses several functions that work together around the same CSV data:
 - **Find similar movies** — Start with a movie you like and get recommendations based on shared features.
 - **View simple stats** — For a director (and optional details like time period), see patterns such as genre distributions or trends in their work. 
 
+## Instructions for Importing
 
-## Tests and course work
+How a developer who wants to import your project into their own code can do so - include documentation and code examples for all functions in your package and a link to an example Python program that uses each of them.
 
-An exercise to create a Python package, build it, test it, distribute it, and use it. See [instructions](./instructions.md) for details.
+1. Create a ``pipenv`` virtual environment
+2. Activate the virtual environment: ``pipenv shell``
+3. Create a Python program file that imports the functions 
+
+
+
+## Instructions for Contributing
+
+Setting up the virtual environment, installing dependencies, building, and testing the package.
+
+1. Clone the repository to your local machine
+2. Install dependencies: 
+3. Create a virtual environment: ``pipenv shell``
+4. 
+
+## Team Members
+
+- Bella D'Aquino - [GitHub Account Link](https://github.com/belladaq)
+- 
+
+
