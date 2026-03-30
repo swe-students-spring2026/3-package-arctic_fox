@@ -13,7 +13,7 @@ def main():
             print("  lead_actor <actor_name> - Find movies with a specific lead actor")
             return
             
-        if sys.argv[1] == "lead_actor":
+        elif sys.argv[1] == "lead_actor":
             actor_name = sys.argv[2]
             if not actor_name:
                 print("Error: Actor name is required")
@@ -24,7 +24,21 @@ def main():
                 print(f"Found: {result}")
             else:
                 print("No movies found")
-        if sys.argv[1] == "quiz":
+        
+        elif sys.argv[1] == "colloborators":
+            colloborator_name_1 = sys.argv[2]
+            colloborator_name_2 = sys.argv[3]
+            if not colloborator_name_1 or not colloborator_name_2:
+                print("Error: Colloborator name is required")
+                return
+            print(f"\nSearching for movies with: {colloborator_name_1} and {colloborator_name_2}")
+            result = movies.find_collabs(colloborator_name_1, colloborator_name_2)
+            if result:
+                print(f"Found: {result}")
+            else:
+                print("No movies found")
+
+        elif sys.argv[1] == "quiz":
             if len(sys.argv) < 3:
                 print("Error: Provide at least one attribute: director, runtime, year")
                 return
@@ -34,6 +48,7 @@ def main():
             except ValueError as e:
                 print(f"Error: {e}")
 
+        
 
 if __name__ == "__main__":
     main()
