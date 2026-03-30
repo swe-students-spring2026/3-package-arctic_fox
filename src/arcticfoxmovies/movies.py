@@ -65,9 +65,18 @@ def play_quiz(attributes):
 def find_collabs(person1: str, person2: str) -> list[str]:
     df = pd.read_csv(_DATA_CSV)
 
-    #first make evrryone lower case for normalization sake
-    person1 = person1.lower()
-    person2 = person2.lower()
+    if (not (person1 and person2)):
+        raise ValueError("Make sure no None values in input")
+
+    if type(person1) != str or type(person2) != str:
+        raise ValueError("Both values need to be strings")
+
+    #first make evrryone lower case + whitespace clear for normalization sake
+    person1 = person1.lower().strip()
+    person2 = person2.lower().strip()
+
+    if person1 == person2:
+        raise ValueError("People cannot colloborate with each other")
 
     collabs = []
 
