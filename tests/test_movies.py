@@ -148,3 +148,19 @@ def test_quiz_invalid():
     #invalid attribute
     with pytest.raises(ValueError):
         quiz(["invalid_attribute"])
+
+
+def test_movie_night_picker():
+    result = movie_night_picker(runtime_max=300, minimum_rating=1.0)
+    if isinstance(result, dict):
+        assert "title" in result
+        assert "genre" in result
+        assert "rating" in result
+        assert float(result["rating"]) >= 1.0
+    
+    strict_result = movie_night_picker(minimum_rating=11.0)
+    assert strict_result == "No movies match your criteria!"
+
+    genre_result = movie_night_picker(genres_to_avoid=["drama"])
+    if isinstance(genre_result, dict):
+        assert "drama" not in genre_result["genre"]
