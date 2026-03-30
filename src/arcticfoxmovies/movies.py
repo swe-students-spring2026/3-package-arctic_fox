@@ -59,7 +59,6 @@ def lead_actor(actor):
     return movie_list
 
 
-<<<<<<< HEAD
 def find_similar():
     # params: movie_name=, attributes=["Director", "Runtime", etc]
     pass
@@ -128,7 +127,6 @@ def genre_stats(genre_name: str) -> dict:
         "avg_runtime_minutes": avg_runtime_minutes,
         "top_actors": top_actors,
     }
-=======
 def find_movie_by_director(director):
     # params: director
     movies_df = _load_movies()
@@ -171,4 +169,3 @@ def genre_roulette(genre, avoid_year=None):
         return f"No {genre} movies found. Try another genre!"
 
     return random.choice(candidates)
->>>>>>> c2a315538a4d2c94042867df1b4a62f91c341df8

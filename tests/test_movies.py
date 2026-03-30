@@ -133,7 +133,7 @@ def test_quiz_edge():
     result = quiz()
     assert "," not in result["director"]
     #year should be an int, not string
-    asset isinstance(result["year"], int)
+    assert isinstance(result["year"], int)
     #runtime and answer should be non empty strings
     assert isinstance(result["runtime"], str) and len(result["runtime"]) > 0
     assert isinstance(result["answer"], str) and len(result["answer"]) > 0
@@ -145,7 +145,6 @@ def test_quiz_invalid():
     assert isinstance(result, dict)
     assert "question" in result
 
-    =======
     # Assertion 2: Answer and year look like usable movie data
     assert isinstance(result["answer"], str)
     assert len(result["answer"]) > 0
