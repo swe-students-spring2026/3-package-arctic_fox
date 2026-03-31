@@ -11,9 +11,11 @@ def main():
             print("Usage: python -m arcticfoxmovies <command> <args>")
             print("Commands:")
             print("  lead_actor <actor_name> - Find movies with a specific lead actor")
-            print("  colloborators <colloborator1, colloborator2> - Find movies with collobrators")
+            print("  colloborators <colloborator1> <colloborator2> - Find movies with collobrators")
             print("  quiz <director, runtime, year>")
-            print("  movie night picker <actor, rating, runtime>")
+            print("  movie-night-picker <runtime_max> <minimum_rating> <genres_to_avoid>")
+            print("  genre-roulette <genre> [year-to-avoid]")
+            print("  find-movie-by-director <director_name>")
             return
             
         elif sys.argv[1] == "lead_actor":
@@ -57,15 +59,15 @@ def main():
     
         elif sys.argv[1] == "movie-night-picker":
             if len(sys.argv) < 3:
-                print("Provide atleast one atribute: runtime, rating, genre-to-avoid")
+                print("Provide at least runtime_max (e.g., 150)")
                 return
             
-            if len(sys.argv) == 3:
-                movies.movie_night_picker(sys.argv[2])
-            elif len(sys.argv) == 4:
-                movies.movie_night_picker(sys.argv[2], sys.argv[3])
-            else:
-                movies.movie_night_picker(sys.argv[2], sys.argv[3], [sys.argv[4]])
+            runtime_max = int(sys.argv[2])
+            minimum_rating = float(sys.argv[3]) if len(sys.argv) > 3 else 8.0
+            genres_to_avoid = sys.argv[4].split(",") if len(sys.argv) > 4 else None
+            
+            result = movies.movie_night_picker(runtime_max, minimum_rating, genres_to_avoid)
+            print(f"Result: {result}")
         
         elif sys.argv[1] == "find-movie-by-director":
             if len(sys.argv) < 3:
@@ -74,10 +76,26 @@ def main():
         
             director = sys.argv[2]
             try:
-                movies.find_movie_by_director(director)
+                result = movies.find_movie_by_director(director)
+                print(f"Found: {result}")
             except ValueError as e:
-                print(f"Error {e}")
+                print(f"Error: {e}")
 
+
+
+        elif sys.argv[1] == "genre-roulette":
+            if len(sys.argv) < 3:
+                print("Error: Provide a genre")
+                return
+            
+            genre = sys.argv[2]
+            avoid_year = int(sys.argv[3]) if len(sys.argv) > 3 else None
+            
+            try:
+                result = movies.genre_roulette(genre, avoid_year)
+                print(f"Result: {result}")
+            except ValueError as e:
+                print(f"Error: {e}")
 
 
 if __name__ == "__main__":
