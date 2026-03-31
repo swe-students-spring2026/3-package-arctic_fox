@@ -169,10 +169,11 @@ pipenv run twine upload dist/*
 
 ## Teammates
 
-- [ZhiHui Chen](https://github.com/zc3716)
--
--
--
+- [@Sanjayc0204](https://github.com/Sanjayc0204)
+- [@RohitDayanand](https://github.com/RohitDayanand)
+- [@belladaq](https://github.com/belladaq)
+- [@Zhi-Hui-C](https://github.com/Zhi-Hui-C)
+- [@ethandemol](https://github.com/ethandemol)
 
 ## License
 
