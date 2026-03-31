@@ -22,26 +22,13 @@ Dataset source: [IMDB Top 250 Movies (Kaggle)](https://www.kaggle.com/datasets/r
 
 ## Example Program
 
-A complete example that uses all package features is available in:
+The project uses the package entry point in
+`src/arcticfoxmovies/__main__.py`.
 
-- [examples/example_program.py](examples/example_program.py)
-
-Run it locally:
-
-```bash
-pipenv run python examples/example_program.py
-```
-
-Run with interactive quiz enabled:
+Run the program from the repository root:
 
 ```bash
-pipenv run python examples/example_program.py --play-quiz
-```
-
-Run with dataframe preview enabled:
-
-```bash
-pipenv run python examples/example_program.py --show-dataframe-shape
+pipenv run python -m arcticfoxmovies --help
 ```
 
 ## Function Reference
@@ -130,31 +117,7 @@ pick = genre_roulette("Drama", avoid_year=1994)
 print(pick)
 ```
 
-### `find_shape_of_dataframe(path=None)`
-
-Debug helper that prints a head/tail preview of the movie dataframe.
-
-```python
-find_shape_of_dataframe()
-```
-
-## CLI Usage
-
-The package also exposes a CLI entry point.
-
-```bash
-python -m arcticfoxmovies --help
-python -m arcticfoxmovies lead_actor "Tom Hanks"
-python -m arcticfoxmovies quiz director runtime year
-```
-
-If installed from PyPI, you can also use the script command:
-
-```bash
-arcticfoxmovies --help
-```
-
-## Developer Setup (Any Platform)
+## Developer Setup
 
 ### 1. Prerequisites
 
@@ -198,39 +161,11 @@ pipenv run twine check dist/*
 pipenv run twine upload dist/*
 ```
 
-## Continuous Integration
-
-GitHub Actions workflow: [python-package.yml](.github/workflows/python-package.yml)
-
-On every push and PR to `main`, the workflow:
-
-- sets up a matrix for Python 3.9, 3.10, and 3.11,
-- installs dependencies with `pipenv`,
-- runs lint checks with `flake8`,
-- runs unit tests with `pytest`.
-
-## Team Workflow
-
-Use feature branches and pull requests for all changes:
-
-1. Create a feature branch from `main`.
-2. Open a PR into `main`.
-3. Request teammate review.
-4. Reviewer runs tests and validates behavior.
-5. Merge once approved.
-6. Delete the feature branch.
-7. Pull latest `main` locally.
-
 ## Configuration and Data
 
 - No local `.env` file is required to run this package.
 - The dataset ships in the repository at `data/IMDB Top 250 Movies.csv`.
 - No database setup or seed/import step is required.
-
-Optional CI secret:
-
-- `COMMIT_LOG_API` is used only by `.github/workflows/event-logger.yml`.
-- If that workflow is enabled in your fork, configure this GitHub Actions secret in your repository settings.
 
 ## Teammates
 
@@ -238,7 +173,6 @@ Optional CI secret:
 -
 -
 -
-
 
 ## License
 
