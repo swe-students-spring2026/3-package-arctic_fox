@@ -40,10 +40,10 @@ def movie_night_picker(runtime_max=150, minimum_rating=8.0, genres_to_avoid=None
 
     return {
         "title": winner['name'],
-        "year": winner['year'], 
-        "rating": winner['rating'],
+        "year": int(winner['year']),
+        "rating": float(winner['rating']),
         "genre": winner['genre'],
-        "run_time": winner['run_time']
+        "run_time": float(winner['run_time'])
     }
 
 def quiz(attributes):
