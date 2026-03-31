@@ -18,7 +18,7 @@ def movie_night_picker(runtime_max=150, minimum_rating=8.0, genres_to_avoid=None
     
     df = _load_movies()
     
-    df['run_time'] = df['run_time'].astype(str).str.extract('(\d+)').astype(float) * 60
+    df['run_time'] = df['run_time'].astype(str).str.extract(r'(\d+)').astype(float) * 60
 
     # Filter by rating or runtime
     df = df[df['run_time'] <= runtime_max]
