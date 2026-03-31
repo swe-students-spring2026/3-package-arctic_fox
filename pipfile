@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 pandas = "*"
+"pyproject.toml" = "*"
+arctic-fox-movies = {path = ".", editable = true}
 
 [dev-packages]
 pytest = "*"

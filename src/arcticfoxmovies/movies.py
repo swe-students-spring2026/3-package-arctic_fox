@@ -13,12 +13,12 @@ def _load_movies():
 
 # Guess the movie based on clues - director, runtime, year.
 
-def movie_night_picker(genres_to_avoid=None, runtime_max=150, minimum_rating=8.0):
+def movie_night_picker(runtime_max=150, minimum_rating=8.0, genres_to_avoid=None):
     # params: genres_to_avoid=None, runtime_max=150, minimum_rating
     
     df = _load_movies()
     
-    df['run_time'] = df['run_time'].astype(str).str.extract('(\d+)').astype(float) * 60
+    df['run_time'] = df['run_time'].astype(str).str.extract(r'(\d+)').astype(float) * 60
 
     # Filter by rating or runtime
     df = df[df['run_time'] <= runtime_max]
@@ -82,10 +82,7 @@ def play_quiz(attributes):
     result = quiz(attributes)
     print(result["question"])
     guess =input("Your guess: ")
-
-    #TODO Ethan you need to define answer here - I put in python if down below
-    answer = "Hello"
-    if guess.lower().strip == result[answer].lower().strip() if result.get(answer) else "random":
+    if guess.lower().strip() == result["answer"].lower().strip():
         print("Correct!")
     else:
         print(f"Wrong! The answer was: {result['answer']}")
@@ -96,6 +93,8 @@ def lead_actor(actor):
     movies_df = _load_movies()
     if type(actor) != str:
         raise ValueError("Actor must be a string")
+    if not actor.strip():  # Add this line
+        raise ValueError("Actor cannot be empty")  # Add this line
     movie_list = []
     for _, row in movies_df.iterrows():
         if row["casts"].split(",")[0] == actor:
