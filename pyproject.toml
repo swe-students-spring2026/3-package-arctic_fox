@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "arctic-fox-movies"
 description = "A lighthearted Python package for exploring and discovering movies from the IMDB Top 250 list with fun utilities for movie selection and analysis."
-version = "0.1.1"
+version = "0.1.2"
 authors = [
   { name="Sanjay Chunduru", email="sc9635@nyu.edu" },
   { name="ZhiHui Chen", email="zc3716@nyu.edu" }, 
